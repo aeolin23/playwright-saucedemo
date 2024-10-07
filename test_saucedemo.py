@@ -90,7 +90,7 @@ def test_checkout(page: Page, username, password, first_name, last_name, postal_
 
 # logout test case
 @pytest.mark.parametrize('username, password', data_login)
-def test_login_positive(page: Page, username, password):
+def test_logout(page: Page, username, password):
     page.goto('https://saucedemo.com')
 
     page.locator('[data-test="username"]').fill(username)
