@@ -5,7 +5,7 @@ Automation Testing with Pytest-Playwright Python on Saucedemo Web
 To install the required libraries, run:
 
 ```bash
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 To install the required browsers, run:
