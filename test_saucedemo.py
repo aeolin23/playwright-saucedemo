@@ -2,14 +2,11 @@ from playwright.sync_api import Page, expect
 import pytest
 
 # positive login test case
-data_login = [('standard_user', 'secret_sauce'),]
-
-@pytest.mark.parametrize('username, password', data_login)
-def test_login_positive(page: Page, username, password):
+def test_login_positive(page: Page):
     page.goto('https://saucedemo.com')
 
-    page.locator('[data-test="username"]').fill(username)
-    page.locator('[data-test="password"]').fill(password)
+    page.locator('[data-test="username"]').fill('standard_user')
+    page.locator('[data-test="password"]').fill('secret_sauce')
     page.locator('[data-test="login-button"]').click()
 
     inventory_page_title = page.locator('//div[@class="app_logo"]').text_content()
@@ -34,14 +31,11 @@ def test_login_negative(page: Page, username, password, error):
     assert error_text == error
 
 # checkout test case
-data_checkout = [('standard_user', 'secret_sauce', 'Ludwig', 'Wahlberg', '54321'),]
-
-@pytest.mark.parametrize('username, password, first_name, last_name, postal_code', data_checkout)
-def test_checkout(page: Page, username, password, first_name, last_name, postal_code):
+def test_checkout(page: Page):
     page.goto('https://saucedemo.com')
 
-    page.locator('[data-test="username"]').fill(username)
-    page.locator('[data-test="password"]').fill(password)
+    page.locator('[data-test="username"]').fill('standard_user')
+    page.locator('[data-test="password"]').fill('secret_sauce')
     page.locator('[data-test="login-button"]').click()
 
     inventory_page_title = page.locator('//div[@class="app_logo"]').text_content()
@@ -67,9 +61,9 @@ def test_checkout(page: Page, username, password, first_name, last_name, postal_
 
     assert checkout_step_one_title == 'Checkout: Your Information'
 
-    page.locator('[data-test="firstName"]').fill(first_name)
-    page.locator('[data-test="lastName"]').fill(last_name)
-    page.locator('[data-test="postalCode"]').fill(postal_code)
+    page.locator('[data-test="firstName"]').fill('Ludwig')
+    page.locator('[data-test="lastName"]').fill('Wahlberg')
+    page.locator('[data-test="postalCode"]').fill('54321')
     page.locator('[data-test="continue"]').click()
 
     checkout_step_two_title = page.locator('[data-test="title"]').inner_text()
@@ -89,12 +83,11 @@ def test_checkout(page: Page, username, password, first_name, last_name, postal_
     assert inventory_page_title == 'Swag Labs'
 
 # logout test case
-@pytest.mark.parametrize('username, password', data_login)
-def test_logout(page: Page, username, password):
+def test_logout(page: Page):
     page.goto('https://saucedemo.com')
 
-    page.locator('[data-test="username"]').fill(username)
-    page.locator('[data-test="password"]').fill(password)
+    page.locator('[data-test="username"]').fill('standard_user')
+    page.locator('[data-test="password"]').fill('secret_sauce')
     page.locator('[data-test="login-button"]').click()
 
     inventory_page_title = page.locator('//div[@class="app_logo"]').text_content()
