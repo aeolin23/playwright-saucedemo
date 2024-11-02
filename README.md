@@ -17,5 +17,5 @@ playwright install
 
 If you want to see the browser window while running the tests, use the `--headed` option. To create a report in HTML format, use `--html=report.html`
 ```bash
-pytest test_saucedemo.py --headed --html=report.html
+pytest tests\test_saucedemo.py --headed --html=report.html
 ```
