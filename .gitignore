@@ -3,6 +3,7 @@ virtualenv/
 
 # Bytecode cache files
 __pycache__/
+.pytest_cache/
 
 # HTML report
 # Running the command with --html=report.html will trigger the automatic generation of an HTML report
